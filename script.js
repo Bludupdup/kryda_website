@@ -112,16 +112,33 @@ const heroVideo =
     );
 
 
+const bandSection =
+    document.getElementById(
+        "band"
+    );
+
+
+const bandVideo =
+    document.getElementById(
+        "bandVideo"
+    );
+
+
 let activeFilter =
     "all";
 
 
+let bandHasPlayed =
+    false;
+
+
 /* =========================================================
    HERO VIDEO
-   PLAY ONCE
 ========================================================= */
 
-if (heroVideo) {
+if (
+    heroVideo
+) {
 
     heroVideo.loop =
         false;
@@ -138,8 +155,7 @@ if (heroVideo) {
                 Number.isFinite(
                     heroVideo.duration
                 ) &&
-                heroVideo.duration >
-                    0.1
+                heroVideo.duration > 0.1
             ) {
 
                 heroVideo.currentTime =
@@ -153,6 +169,122 @@ if (heroVideo) {
 
         }
     );
+
+}
+
+
+/* =========================================================
+   KRYDA BAND VIDEO
+========================================================= */
+
+if (
+    bandSection &&
+    bandVideo
+) {
+
+    bandVideo.loop =
+        false;
+
+
+    bandVideo.pause();
+
+
+    bandVideo.addEventListener(
+        "loadedmetadata",
+        () => {
+
+            if (
+                !bandHasPlayed
+            ) {
+
+                bandVideo.currentTime =
+                    0;
+
+            }
+
+        }
+    );
+
+
+    bandVideo.addEventListener(
+        "ended",
+        () => {
+
+            bandVideo.pause();
+
+
+            if (
+                Number.isFinite(
+                    bandVideo.duration
+                ) &&
+                bandVideo.duration > 0.1
+            ) {
+
+                bandVideo.currentTime =
+                    Math.max(
+                        0,
+                        bandVideo.duration -
+                        0.035
+                    );
+
+            }
+
+        }
+    );
+
+
+    if (
+        "IntersectionObserver" in
+        window
+    ) {
+
+        const bandObserver =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting ||
+                                bandHasPlayed
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            bandHasPlayed =
+                                true;
+
+
+                            bandVideo
+                                .play()
+                                .catch(
+                                    () => {}
+                                );
+
+
+                            bandObserver.unobserve(
+                                bandSection
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.25
+                }
+            );
+
+
+        bandObserver.observe(
+            bandSection
+        );
+
+    }
 
 }
 
@@ -271,17 +403,8 @@ if (
 
 
 /* =========================================================
-   ACTIVE NAVIGATION
+   ACTIVE HEADER NAVIGATION
 ========================================================= */
-
-/*
-    This controls the coloured underline
-    / glass highlight in the header.
-
-    It updates automatically depending
-    on which section is currently visible.
-*/
-
 
 const observedSections =
     navLinks
@@ -309,14 +432,14 @@ function activateNavigation(
     navLinks.forEach(
         (link) => {
 
-            const isActive =
+            const active =
                 link.dataset.section ===
                 sectionId;
 
 
             link.classList.toggle(
                 "active",
-                isActive
+                active
             );
 
         }
@@ -367,11 +490,6 @@ if (
             },
             {
 
-                /*
-                    Focus roughly on the
-                    centre of the viewport.
-                */
-
                 rootMargin:
                     "-30% 0px -45% 0px",
 
@@ -399,11 +517,6 @@ if (
 
 }
 
-
-/*
-    Immediately highlight nav
-    item when user clicks it.
-*/
 
 navLinks.forEach(
     (link) => {
@@ -521,7 +634,7 @@ filterButtons.forEach(
 
 
 /* =========================================================
-   OPEN ACTIVITY MODAL
+   OPEN ACTIVITY
 ========================================================= */
 
 function openActivity(
@@ -531,9 +644,7 @@ function openActivity(
     if (
         !activityModal
     ) {
-
         return;
-
     }
 
 
@@ -581,10 +692,8 @@ function openActivity(
     if (
         modalArt
     ) {
-
         modalArt.textContent =
             "✨";
-
     }
 
 
@@ -606,10 +715,8 @@ function openActivity(
     if (
         modalPlay
     ) {
-
         modalPlay.textContent =
             "▶ Start Activity";
-
     }
 
 
@@ -640,15 +747,7 @@ activityCards.forEach(
 
         card.addEventListener(
             "click",
-            (event) => {
-
-                /*
-                    Prevent double behaviour
-                    from the inner button.
-                */
-
-                event.stopPropagation();
-
+            () => {
 
                 openActivity(
                     card
@@ -670,9 +769,7 @@ function closeModal() {
     if (
         !activityModal
     ) {
-
         return;
-
     }
 
 
@@ -786,7 +883,7 @@ modalPlay?.addEventListener(
 
 
 /* =========================================================
-   HERO BUTTON SCROLL
+   SMOOTH SCROLL
 ========================================================= */
 
 document
@@ -798,7 +895,10 @@ document
 
             button.addEventListener(
                 "click",
-                () => {
+                (event) => {
+
+                    event.stopPropagation();
+
 
                     const selector =
                         button.dataset.scroll;
@@ -807,9 +907,7 @@ document
                     if (
                         !selector
                     ) {
-
                         return;
-
                     }
 
 
@@ -820,11 +918,8 @@ document
 
 
                     target?.scrollIntoView({
-                        behavior:
-                            "smooth",
-
-                        block:
-                            "start"
+                        behavior: "smooth",
+                        block: "start"
                     });
 
                 }
@@ -843,13 +938,8 @@ backTop?.addEventListener(
     () => {
 
         window.scrollTo({
-
-            top:
-                0,
-
-            behavior:
-                "smooth"
-
+            top: 0,
+            behavior: "smooth"
         });
 
     }
@@ -884,9 +974,7 @@ if (
                         if (
                             !entry.isIntersecting
                         ) {
-
                             return;
-
                         }
 
 
@@ -904,13 +992,9 @@ if (
 
             },
             {
-
-                threshold:
-                    0.12,
-
+                threshold: 0.12,
                 rootMargin:
                     "0px 0px -40px 0px"
-
             }
         );
 
@@ -923,12 +1007,8 @@ if (
 
             element.style.transitionDelay =
                 `${Math.min(
-                    (
-                        index %
-                        4
-                    ) *
-                    65,
-                    195
+                    (index % 4) * 60,
+                    180
                 )}ms`;
 
 
