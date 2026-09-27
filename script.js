@@ -15,30 +15,20 @@ const hamburger =
         "hamburger"
     );
 
+
 const navMenu =
     document.getElementById(
         "navMenu"
     );
 
-const searchToggle =
-    document.getElementById(
-        "searchToggle"
-    );
 
-const searchPanel =
-    document.getElementById(
-        "searchPanel"
-    );
+const navLinks =
+    [
+        ...document.querySelectorAll(
+            ".nav-link"
+        )
+    ];
 
-const closeSearch =
-    document.getElementById(
-        "closeSearch"
-    );
-
-const activitySearch =
-    document.getElementById(
-        "activitySearch"
-    );
 
 const filterButtons =
     [
@@ -47,6 +37,7 @@ const filterButtons =
         )
     ];
 
+
 const activityCards =
     [
         ...document.querySelectorAll(
@@ -54,55 +45,66 @@ const activityCards =
         )
     ];
 
+
 const emptyState =
     document.getElementById(
         "emptyState"
     );
+
 
 const activityModal =
     document.getElementById(
         "activityModal"
     );
 
+
 const modalClose =
     document.getElementById(
         "modalClose"
     );
+
 
 const modalArt =
     document.getElementById(
         "modalArt"
     );
 
+
 const modalCategory =
     document.getElementById(
         "modalCategory"
     );
+
 
 const modalTitle =
     document.getElementById(
         "modalTitle"
     );
 
+
 const modalDescription =
     document.getElementById(
         "modalDescription"
     );
+
 
 const modalPlay =
     document.getElementById(
         "modalPlay"
     );
 
+
 const loadingMessage =
     document.getElementById(
         "loadingMessage"
     );
 
+
 const backTop =
     document.getElementById(
         "backTop"
     );
+
 
 const heroVideo =
     document.getElementById(
@@ -113,13 +115,10 @@ const heroVideo =
 let activeFilter =
     "all";
 
-let searchValue =
-    "";
-
 
 /* =========================================================
    HERO VIDEO
-   PLAY ONCE AND HOLD LAST FRAME
+   PLAY ONCE
 ========================================================= */
 
 if (heroVideo) {
@@ -139,13 +138,15 @@ if (heroVideo) {
                 Number.isFinite(
                     heroVideo.duration
                 ) &&
-                heroVideo.duration > 0.1
+                heroVideo.duration >
+                    0.1
             ) {
 
                 heroVideo.currentTime =
                     Math.max(
                         0,
-                        heroVideo.duration - 0.04
+                        heroVideo.duration -
+                        0.04
                     );
 
             }
@@ -157,7 +158,7 @@ if (heroVideo) {
 
 
 /* =========================================================
-   MOBILE MENU
+   MOBILE NAVIGATION
 ========================================================= */
 
 if (
@@ -193,37 +194,33 @@ if (
     );
 
 
-    document
-        .querySelectorAll(
-            ".nav-link"
-        )
-        .forEach(
-            (link) => {
+    navLinks.forEach(
+        (link) => {
 
-                link.addEventListener(
-                    "click",
-                    () => {
+            link.addEventListener(
+                "click",
+                () => {
 
-                        navMenu.classList.remove(
-                            "open"
-                        );
+                    navMenu.classList.remove(
+                        "open"
+                    );
 
 
-                        hamburger.classList.remove(
-                            "open"
-                        );
+                    hamburger.classList.remove(
+                        "open"
+                    );
 
 
-                        hamburger.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+                    hamburger.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
 
-                    }
-                );
+                }
+            );
 
-            }
-        );
+        }
+    );
 
 
     document.addEventListener(
@@ -274,39 +271,53 @@ if (
 
 
 /* =========================================================
-   SEARCH PANEL
+   ACTIVE NAVIGATION
 ========================================================= */
 
-if (
-    searchToggle &&
-    searchPanel
-) {
+/*
+    This controls the coloured underline
+    / glass highlight in the header.
 
-    searchToggle.addEventListener(
-        "click",
-        () => {
-
-            searchPanel.classList.toggle(
-                "open"
-            );
+    It updates automatically depending
+    on which section is currently visible.
+*/
 
 
-            if (
-                searchPanel.classList.contains(
-                    "open"
-                )
-            ) {
+const observedSections =
+    navLinks
+        .map(
+            (link) => {
 
-                setTimeout(
-                    () => {
+                const id =
+                    link.dataset.section;
 
-                        activitySearch?.focus();
 
-                    },
-                    150
+                return document.getElementById(
+                    id
                 );
 
             }
+        )
+        .filter(Boolean);
+
+
+
+function activateNavigation(
+    sectionId
+) {
+
+    navLinks.forEach(
+        (link) => {
+
+            const isActive =
+                link.dataset.section ===
+                sectionId;
+
+
+            link.classList.toggle(
+                "active",
+                isActive
+            );
 
         }
     );
@@ -314,12 +325,98 @@ if (
 }
 
 
-closeSearch?.addEventListener(
-    "click",
-    () => {
 
-        searchPanel?.classList.remove(
-            "open"
+if (
+    "IntersectionObserver" in
+    window
+) {
+
+    const sectionObserver =
+        new IntersectionObserver(
+            (entries) => {
+
+                const visibleSections =
+                    entries
+                        .filter(
+                            (entry) =>
+                                entry.isIntersecting
+                        )
+                        .sort(
+                            (
+                                first,
+                                second
+                            ) =>
+                                second.intersectionRatio -
+                                first.intersectionRatio
+                        );
+
+
+                if (
+                    visibleSections.length >
+                    0
+                ) {
+
+                    activateNavigation(
+                        visibleSections[0]
+                            .target
+                            .id
+                    );
+
+                }
+
+            },
+            {
+
+                /*
+                    Focus roughly on the
+                    centre of the viewport.
+                */
+
+                rootMargin:
+                    "-30% 0px -45% 0px",
+
+                threshold:
+                    [
+                        0,
+                        0.1,
+                        0.25,
+                        0.5
+                    ]
+
+            }
+        );
+
+
+    observedSections.forEach(
+        (section) => {
+
+            sectionObserver.observe(
+                section
+            );
+
+        }
+    );
+
+}
+
+
+/*
+    Immediately highlight nav
+    item when user clicks it.
+*/
+
+navLinks.forEach(
+    (link) => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                activateNavigation(
+                    link.dataset.section
+                );
+
+            }
         );
 
     }
@@ -327,7 +424,7 @@ closeSearch?.addEventListener(
 
 
 /* =========================================================
-   ACTIVITY FILTERING
+   FILTER ACTIVITIES
 ========================================================= */
 
 function filterActivities() {
@@ -339,41 +436,11 @@ function filterActivities() {
     activityCards.forEach(
         (card) => {
 
-            const title =
-                (
-                    card.dataset.title ||
-                    ""
-                ).toLowerCase();
-
-
             const category =
                 (
                     card.dataset.category ||
                     ""
                 ).toLowerCase();
-
-
-            const description =
-                (
-                    card.dataset.description ||
-                    ""
-                ).toLowerCase();
-
-
-            const searchMatches =
-                searchValue === "" ||
-
-                title.includes(
-                    searchValue
-                ) ||
-
-                category.includes(
-                    searchValue
-                ) ||
-
-                description.includes(
-                    searchValue
-                );
 
 
             const categoryMatches =
@@ -384,18 +451,15 @@ function filterActivities() {
                     activeFilter;
 
 
-            const visible =
-                searchMatches &&
-                categoryMatches;
-
-
             card.classList.toggle(
                 "hidden",
-                !visible
+                !categoryMatches
             );
 
 
-            if (visible) {
+            if (
+                categoryMatches
+            ) {
 
                 visibleCount++;
 
@@ -411,26 +475,6 @@ function filterActivities() {
     );
 
 }
-
-
-/* =========================================================
-   SEARCH INPUT
-========================================================= */
-
-activitySearch?.addEventListener(
-    "input",
-    (event) => {
-
-        searchValue =
-            event.target.value
-                .trim()
-                .toLowerCase();
-
-
-        filterActivities();
-
-    }
-);
 
 
 /* =========================================================
@@ -477,35 +521,30 @@ filterButtons.forEach(
 
 
 /* =========================================================
-   ACTIVITY MODAL
+   OPEN ACTIVITY MODAL
 ========================================================= */
 
 function openActivity(
     card
 ) {
 
-    if (!activityModal) {
+    if (
+        !activityModal
+    ) {
 
         return;
 
     }
 
 
-    if (modalArt) {
-
-        modalArt.textContent =
-            card.dataset.icon ||
-            "🎮";
-
-    }
+    const category =
+        card.dataset.category ||
+        "activity";
 
 
-    if (modalCategory) {
-
-        const category =
-            card.dataset.category ||
-            "activity";
-
+    if (
+        modalCategory
+    ) {
 
         modalCategory.textContent =
             category
@@ -517,7 +556,9 @@ function openActivity(
     }
 
 
-    if (modalTitle) {
+    if (
+        modalTitle
+    ) {
 
         modalTitle.textContent =
             card.dataset.title ||
@@ -526,7 +567,9 @@ function openActivity(
     }
 
 
-    if (modalDescription) {
+    if (
+        modalDescription
+    ) {
 
         modalDescription.textContent =
             card.dataset.description ||
@@ -535,7 +578,19 @@ function openActivity(
     }
 
 
-    if (loadingMessage) {
+    if (
+        modalArt
+    ) {
+
+        modalArt.textContent =
+            "✨";
+
+    }
+
+
+    if (
+        loadingMessage
+    ) {
 
         loadingMessage.classList.remove(
             "show"
@@ -548,7 +603,9 @@ function openActivity(
     }
 
 
-    if (modalPlay) {
+    if (
+        modalPlay
+    ) {
 
         modalPlay.textContent =
             "▶ Start Activity";
@@ -575,12 +632,44 @@ function openActivity(
 
 
 /* =========================================================
+   ACTIVITY CARD CLICK
+========================================================= */
+
+activityCards.forEach(
+    (card) => {
+
+        card.addEventListener(
+            "click",
+            (event) => {
+
+                /*
+                    Prevent double behaviour
+                    from the inner button.
+                */
+
+                event.stopPropagation();
+
+
+                openActivity(
+                    card
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
    CLOSE MODAL
 ========================================================= */
 
 function closeModal() {
 
-    if (!activityModal) {
+    if (
+        !activityModal
+    ) {
 
         return;
 
@@ -605,32 +694,6 @@ function closeModal() {
 }
 
 
-/* =========================================================
-   ACTIVITY CARDS
-========================================================= */
-
-activityCards.forEach(
-    (card) => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                openActivity(
-                    card
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   MODAL CLOSE
-========================================================= */
-
 modalClose?.addEventListener(
     "click",
     closeModal
@@ -653,10 +716,6 @@ activityModal?.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -687,12 +746,14 @@ modalPlay?.addEventListener(
             "Loading...";
 
 
-        if (loadingMessage) {
+        loadingMessage?.classList.add(
+            "show"
+        );
 
-            loadingMessage.classList.add(
-                "show"
-            );
 
+        if (
+            loadingMessage
+        ) {
 
             loadingMessage.textContent =
                 "Preparing your activity...";
@@ -725,7 +786,7 @@ modalPlay?.addEventListener(
 
 
 /* =========================================================
-   SMOOTH SCROLL BUTTONS
+   HERO BUTTON SCROLL
 ========================================================= */
 
 document
@@ -743,7 +804,9 @@ document
                         button.dataset.scroll;
 
 
-                    if (!selector) {
+                    if (
+                        !selector
+                    ) {
 
                         return;
 
@@ -757,13 +820,11 @@ document
 
 
                     target?.scrollIntoView({
-
                         behavior:
                             "smooth",
 
                         block:
                             "start"
-
                     });
 
                 }
@@ -783,7 +844,8 @@ backTop?.addEventListener(
 
         window.scrollTo({
 
-            top: 0,
+            top:
+                0,
 
             behavior:
                 "smooth"
@@ -795,7 +857,7 @@ backTop?.addEventListener(
 
 
 /* =========================================================
-   SIDE REVEAL ANIMATIONS
+   SCROLL REVEAL
 ========================================================= */
 
 const revealElements =
@@ -842,11 +904,13 @@ if (
 
             },
             {
+
                 threshold:
-                    0.14,
+                    0.12,
 
                 rootMargin:
-                    "0px 0px -45px 0px"
+                    "0px 0px -40px 0px"
+
             }
         );
 
@@ -859,8 +923,12 @@ if (
 
             element.style.transitionDelay =
                 `${Math.min(
-                    (index % 4) * 70,
-                    210
+                    (
+                        index %
+                        4
+                    ) *
+                    65,
+                    195
                 )}ms`;
 
 

@@ -31,10 +31,26 @@
 
     <nav class="navbar container">
 
-        <a href="#home" class="logo">
-            <span class="logo-icon">K</span>
-            <span class="logo-text">kryda</span>
+
+        <!-- =================================================
+             CUSTOM LOGO
+             Replace kryda-logo.png with your actual logo file
+        ================================================== -->
+
+        <a
+            href="#home"
+            class="logo"
+            aria-label="Kryda home"
+        >
+
+            <img
+                src="kryda-logo.png"
+                alt="Kryda"
+                class="custom-logo"
+            >
+
         </a>
+
 
 
         <div
@@ -42,47 +58,60 @@
             id="navMenu"
         >
 
-            <a href="#activities" class="nav-link">
-                <span>🎮</span>
+            <a
+                href="#activities"
+                class="nav-link"
+                data-section="activities"
+            >
                 Activities
             </a>
 
-            <a href="#pillars" class="nav-link">
-                <span>🌱</span>
+
+            <a
+                href="#pillars"
+                class="nav-link"
+                data-section="pillars"
+            >
                 Growth
             </a>
 
-            <a href="#personalized" class="nav-link">
-                <span>✨</span>
+
+            <a
+                href="#personalized"
+                class="nav-link"
+                data-section="personalized"
+            >
                 Personalized
             </a>
 
-            <a href="#band" class="nav-link">
-                <span>⌚</span>
+
+            <a
+                href="#band"
+                class="nav-link"
+                data-section="band"
+            >
                 Kryda Band
             </a>
 
-            <a href="#passport" class="nav-link">
-                <span>⭐</span>
+
+            <a
+                href="#passport"
+                class="nav-link"
+                data-section="passport"
+            >
                 Passport
             </a>
 
         </div>
 
 
-        <div class="nav-actions">
 
-            <button
-                class="search-toggle"
-                id="searchToggle"
-                aria-label="Search activities"
-            >
-                🔍
-            </button>
+        <div class="nav-actions">
 
             <button class="parent-button">
                 Parent Zone
             </button>
+
 
             <button
                 class="hamburger"
@@ -90,45 +119,16 @@
                 aria-label="Open navigation"
                 aria-expanded="false"
             >
+
                 <span></span>
                 <span></span>
                 <span></span>
+
             </button>
 
         </div>
 
     </nav>
-
-
-    <div
-        class="search-panel"
-        id="searchPanel"
-    >
-
-        <div class="container search-inner">
-
-            <span class="search-large-icon">
-                🔎
-            </span>
-
-            <input
-                type="search"
-                id="activitySearch"
-                placeholder="Search Kryda activities..."
-                autocomplete="off"
-            >
-
-            <button
-                class="close-search"
-                id="closeSearch"
-                aria-label="Close search"
-            >
-                ✕
-            </button>
-
-        </div>
-
-    </div>
 
 </header>
 
@@ -139,6 +139,7 @@
 
 <!-- =========================================================
      HERO
+     LEFT UNCHANGED
 ========================================================= -->
 
 <section
@@ -153,14 +154,17 @@
         playsinline
         id="heroVideo"
     >
+
         <source
             src="movew_the_paper_planes.mp4"
             type="video/mp4"
         >
+
     </video>
 
 
     <div class="container hero-grid">
+
 
         <div class="hero-copy">
 
@@ -168,15 +172,16 @@
                 ✨ Holistic development for ages 4–9
             </span>
 
+
             <h1>
                 Play today.<br>
                 <span>Grow every day.</span>
             </h1>
 
+
             <p>
-                Kryda turns everyday play into meaningful growth with
-                personalized activities, healthy routines, movement
-                challenges and a clear picture of your child’s progress.
+                Kryda turns everyday play into meaningful growth with personalized activities,
+                healthy routines, movement challenges and a clear picture of your child’s progress.
             </p>
 
 
@@ -189,6 +194,7 @@
                     <span>▶</span>
                     Explore Activities
                 </button>
+
 
                 <button
                     class="secondary-button"
@@ -222,10 +228,8 @@
         </div>
 
 
-        <div
-            class="hero-animation-space"
-            aria-label="Reserved space for future animation"
-        >
+        <div class="hero-animation-space">
+            <!-- future animation goes here -->
         </div>
 
     </div>
@@ -236,7 +240,6 @@
 
 <!-- =========================================================
      MADE FOR PLAY / ACTIVITIES
-     SECOND VIDEO BACKGROUND
 ========================================================= -->
 
 <section
@@ -244,24 +247,17 @@
     id="activities"
 >
 
-    <video
-        class="activities-bg-video"
-        autoplay
-        muted
-        loop
-        playsinline
-    >
-        <source
-            src="move_clouds_and_make_the_video(1).mp4"
-            type="video/mp4"
-        >
-    </video>
+    <!--
+        LATER:
+        YOUR MOVING BACKGROUND ANIMATION CAN BE ADDED HERE.
+
+        For now this entire section uses a solid warm yellow
+        background as requested.
+    -->
 
 
-    <div class="activities-video-shade"></div>
+    <div class="container">
 
-
-    <div class="container activities-content">
 
         <div class="section-heading reveal-left">
 
@@ -271,6 +267,7 @@
                     Made for play
                 </span>
 
+
                 <h2>
                     Explore activities
                 </h2>
@@ -279,12 +276,17 @@
 
 
             <p>
-                Short, playful experiences designed around movement,
+                Playful activities designed around movement,
                 thinking, creativity, communication and social growth.
             </p>
 
         </div>
 
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
 
         <div class="filter-row reveal-right">
 
@@ -295,245 +297,406 @@
                 All
             </button>
 
+
             <button
                 class="filter-chip"
                 data-filter="physical"
             >
-                🏃 Physical
+                Physical
             </button>
+
 
             <button
                 class="filter-chip"
                 data-filter="cognitive"
             >
-                🧩 Thinking
+                Thinking
             </button>
+
 
             <button
                 class="filter-chip"
                 data-filter="creative"
             >
-                🎨 Creative
+                Creative
             </button>
+
 
             <button
                 class="filter-chip"
                 data-filter="social"
             >
-                🤝 Social
+                Social
             </button>
+
 
             <button
                 class="filter-chip"
                 data-filter="communication"
             >
-                💬 Communication
+                Communication
             </button>
 
         </div>
 
 
 
+        <!-- =================================================
+             ACTIVITY CARDS
+        ================================================== -->
+
         <div class="activity-grid">
 
 
+            <!-- =============================================
+                 CARD 1
+            ============================================== -->
+
             <article
-                class="activity-card physical reveal-left"
+                class="activity-card activity-orange reveal-left"
                 data-title="Move Mission"
                 data-category="physical"
                 data-description="Jump, balance and complete playful movement challenges."
-                data-icon="🏃"
             >
 
-                <div class="activity-art">
-                    🏃
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Physical
+                    </span>
+
+
+                    <h3>
+                        Move Mission
+                    </h3>
+
+
+                    <p>
+                        Jump, balance and move through playful
+                        challenges designed to build coordination
+                        and confidence.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
                 </div>
 
-                <div class="activity-meta">
-                    <span>Physical</span>
-                    <span>10 min</span>
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+
+                     Example later:
+
+                     <img
+                        src="images/move-mission.png"
+                        alt="Move Mission"
+                     >
+
+                     KEEP THIS SPACE FOR YOUR OWN IMAGE
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
                 </div>
-
-                <h3>
-                    Move Mission
-                </h3>
-
-                <p>
-                    Jump, balance and move through a playful mission.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
 
             </article>
 
 
 
+            <!-- =============================================
+                 CARD 2
+            ============================================== -->
+
             <article
-                class="activity-card cognitive reveal-right"
+                class="activity-card activity-purple reveal-right"
                 data-title="Puzzle Planet"
                 data-category="cognitive"
                 data-description="Solve patterns, memory puzzles and logic challenges."
-                data-icon="🧩"
             >
 
-                <div class="activity-art">
-                    🧩
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Thinking
+                    </span>
+
+
+                    <h3>
+                        Puzzle Planet
+                    </h3>
+
+
+                    <p>
+                        Explore patterns, memory challenges and
+                        playful logic puzzles designed to encourage
+                        problem solving.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
                 </div>
 
-                <div class="activity-meta">
-                    <span>Thinking</span>
-                    <span>8 min</span>
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
                 </div>
-
-                <h3>
-                    Puzzle Planet
-                </h3>
-
-                <p>
-                    Explore patterns and solve colourful thinking challenges.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
 
             </article>
 
 
 
+            <!-- =============================================
+                 CARD 3
+            ============================================== -->
+
             <article
-                class="activity-card creative reveal-left"
+                class="activity-card activity-green reveal-left"
+                data-title="Nature Quest"
+                data-category="social"
+                data-description="Explore nature through observation, teamwork and discovery."
+            >
+
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Social
+                    </span>
+
+
+                    <h3>
+                        Nature Quest
+                    </h3>
+
+
+                    <p>
+                        Explore the outdoors, discover new things
+                        and complete simple missions together.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+
+                     Similar to the TREE AREA in your reference.
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =============================================
+                 CARD 4
+            ============================================== -->
+
+            <article
+                class="activity-card activity-pink reveal-right"
                 data-title="Colour Quest"
                 data-category="creative"
                 data-description="Draw, imagine and create a world of your own."
-                data-icon="🎨"
             >
 
-                <div class="activity-art">
-                    🎨
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Creative
+                    </span>
+
+
+                    <h3>
+                        Colour Quest
+                    </h3>
+
+
+                    <p>
+                        Draw characters, build colourful worlds
+                        and use imagination to create something new.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
                 </div>
 
-                <div class="activity-meta">
-                    <span>Creative</span>
-                    <span>15 min</span>
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
                 </div>
-
-                <h3>
-                    Colour Quest
-                </h3>
-
-                <p>
-                    Create characters, places and stories from imagination.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
 
             </article>
 
 
 
-            <article
-                class="activity-card social reveal-right"
-                data-title="Team Quest"
-                data-category="social"
-                data-description="Play together while practising teamwork and empathy."
-                data-icon="🤝"
-            >
-
-                <div class="activity-art">
-                    🤝
-                </div>
-
-                <div class="activity-meta">
-                    <span>Social</span>
-                    <span>12 min</span>
-                </div>
-
-                <h3>
-                    Team Quest
-                </h3>
-
-                <p>
-                    Cooperate, share and complete challenges together.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
-
-            </article>
-
-
+            <!-- =============================================
+                 CARD 5
+            ============================================== -->
 
             <article
-                class="activity-card communication reveal-left"
+                class="activity-card activity-yellow reveal-left"
                 data-title="Story Spark"
                 data-category="communication"
                 data-description="Build confidence through storytelling and conversation."
-                data-icon="💬"
             >
 
-                <div class="activity-art">
-                    💬
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Communication
+                    </span>
+
+
+                    <h3>
+                        Story Spark
+                    </h3>
+
+
+                    <p>
+                        Build stories from imagination while
+                        practising speaking, listening and expression.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
                 </div>
 
-                <div class="activity-meta">
-                    <span>Communication</span>
-                    <span>10 min</span>
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
                 </div>
-
-                <h3>
-                    Story Spark
-                </h3>
-
-                <p>
-                    Speak, imagine and build a story one idea at a time.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
 
             </article>
 
 
 
+            <!-- =============================================
+                 CARD 6
+            ============================================== -->
+
             <article
-                class="activity-card physical reveal-right"
-                data-title="Balance Adventure"
-                data-category="physical"
-                data-description="A balance challenge designed around playful movement."
-                data-icon="⚡"
+                class="activity-card activity-blue reveal-right"
+                data-title="Team Quest"
+                data-category="social"
+                data-description="Complete playful missions while practising teamwork."
             >
 
-                <div class="activity-art">
-                    ⚡
+
+                <div class="activity-card-copy">
+
+
+                    <span class="activity-label">
+                        Teamwork
+                    </span>
+
+
+                    <h3>
+                        Team Quest
+                    </h3>
+
+
+                    <p>
+                        Solve challenges together while practising
+                        communication, empathy and cooperation.
+                    </p>
+
+
+                    <button class="activity-link">
+                        Try Activity
+                        <span>→</span>
+                    </button>
+
                 </div>
 
-                <div class="activity-meta">
-                    <span>Physical</span>
-                    <span>7 min</span>
+
+
+                <!-- =========================================
+                     YOUR CUSTOM IMAGE GOES HERE
+                ========================================== -->
+
+                <div class="activity-image-slot">
+
+                    <span>
+                        YOUR IMAGE
+                    </span>
+
                 </div>
-
-                <h3>
-                    Balance Adventure
-                </h3>
-
-                <p>
-                    Follow playful movements that train balance and control.
-                </p>
-
-                <button class="card-button">
-                    Try Activity →
-                </button>
 
             </article>
 
         </div>
+
 
 
         <div
@@ -550,7 +713,7 @@
 
 
 <!-- =========================================================
-     DEVELOPMENT PILLARS
+     FIVE WAYS TO GROW
 ========================================================= -->
 
 <section
@@ -558,7 +721,33 @@
     id="pillars"
 >
 
-    <div class="container">
+
+    <div
+        class="section-animation growth-animation"
+        aria-hidden="true"
+    >
+
+        <span class="growth-orb growth-orb-one"></span>
+        <span class="growth-orb growth-orb-two"></span>
+        <span class="growth-orb growth-orb-three"></span>
+
+        <span class="floating-leaf leaf-one">
+            🍃
+        </span>
+
+        <span class="floating-leaf leaf-two">
+            🌿
+        </span>
+
+        <span class="floating-leaf leaf-three">
+            🍃
+        </span>
+
+    </div>
+
+
+
+    <div class="container section-content">
 
         <div class="section-heading centered reveal-left">
 
@@ -566,9 +755,11 @@
                 Whole-child development
             </span>
 
+
             <h2>
                 Five ways to grow
             </h2>
+
 
             <p>
                 Kryda connects everyday play with five important
@@ -578,7 +769,9 @@
         </div>
 
 
+
         <div class="pillar-grid">
+
 
             <article class="pillar-card pillar-physical reveal-left">
 
@@ -593,6 +786,7 @@
                 </p>
 
             </article>
+
 
 
             <article class="pillar-card pillar-cognitive reveal-right">
@@ -610,6 +804,7 @@
             </article>
 
 
+
             <article class="pillar-card pillar-social reveal-left">
 
                 <span>🤝</span>
@@ -625,6 +820,7 @@
             </article>
 
 
+
             <article class="pillar-card pillar-creative reveal-right">
 
                 <span>🎨</span>
@@ -638,6 +834,7 @@
                 </p>
 
             </article>
+
 
 
             <article class="pillar-card pillar-communication reveal-left">
@@ -671,7 +868,21 @@
     id="personalized"
 >
 
-    <div class="container">
+
+    <div
+        class="section-animation personalized-animation"
+        aria-hidden="true"
+    >
+
+        <span class="personalized-orb personalized-orb-one"></span>
+        <span class="personalized-orb personalized-orb-two"></span>
+        <span class="personalized-orb personalized-orb-three"></span>
+
+    </div>
+
+
+
+    <div class="container section-content">
 
         <div class="section-heading centered reveal-left">
 
@@ -679,9 +890,11 @@
                 ✨ Built around every child
             </span>
 
+
             <h2>
                 Personalized for every child
             </h2>
+
 
             <p>
                 Kryda adapts experiences around each child’s pace,
@@ -691,7 +904,9 @@
         </div>
 
 
+
         <div class="personalized-grid">
+
 
             <article class="personalized-card reveal-left">
 
@@ -710,6 +925,7 @@
             </article>
 
 
+
             <article class="personalized-card reveal-right">
 
                 <span class="personalized-icon">
@@ -725,6 +941,7 @@
                 </p>
 
             </article>
+
 
 
             <article class="personalized-card reveal-left">
@@ -760,7 +977,21 @@
     id="band"
 >
 
-    <div class="container band-grid">
+
+    <div
+        class="section-animation band-background-animation"
+        aria-hidden="true"
+    >
+
+        <span class="background-ring ring-one"></span>
+        <span class="background-ring ring-two"></span>
+        <span class="background-ring ring-three"></span>
+
+    </div>
+
+
+
+    <div class="container band-grid section-content">
 
 
         <div class="band-visual reveal-left">
@@ -786,9 +1017,11 @@
                 Move beyond the screen
             </span>
 
+
             <h2>
                 Meet the Kryda Band
             </h2>
+
 
             <p>
                 A playful companion designed to connect physical
@@ -796,13 +1029,18 @@
             </p>
 
 
+
             <div class="feature-list">
+
 
                 <div>
 
-                    <span>🏃</span>
+                    <span>
+                        🏃
+                    </span>
 
                     <div>
+
                         <strong>
                             Movement Challenges
                         </strong>
@@ -810,16 +1048,21 @@
                         <small>
                             Turn activity into missions.
                         </small>
+
                     </div>
 
                 </div>
 
 
+
                 <div>
 
-                    <span>⭐</span>
+                    <span>
+                        ⭐
+                    </span>
 
                     <div>
+
                         <strong>
                             Earn Progress
                         </strong>
@@ -827,16 +1070,21 @@
                         <small>
                             Celebrate consistency, not competition.
                         </small>
+
                     </div>
 
                 </div>
 
 
+
                 <div>
 
-                    <span>💙</span>
+                    <span>
+                        💙
+                    </span>
 
                     <div>
+
                         <strong>
                             Healthy Routines
                         </strong>
@@ -844,6 +1092,7 @@
                         <small>
                             Build positive everyday habits.
                         </small>
+
                     </div>
 
                 </div>
@@ -859,7 +1108,7 @@
 
 
 <!-- =========================================================
-     GROWTH PASSPORT
+     PASSPORT
 ========================================================= -->
 
 <section
@@ -867,7 +1116,33 @@
     id="passport"
 >
 
-    <div class="container passport-grid">
+
+    <div
+        class="section-animation passport-animation"
+        aria-hidden="true"
+    >
+
+        <span class="passport-floating-star star-one">
+            ★
+        </span>
+
+        <span class="passport-floating-star star-two">
+            ✦
+        </span>
+
+        <span class="passport-floating-star star-three">
+            ★
+        </span>
+
+        <span class="passport-floating-star star-four">
+            ✧
+        </span>
+
+    </div>
+
+
+
+    <div class="container passport-grid section-content">
 
 
         <div class="passport-copy reveal-left">
@@ -876,9 +1151,11 @@
                 Growth Passport
             </span>
 
+
             <h2>
                 Every little win matters.
             </h2>
+
 
             <p>
                 Kryda turns activity into a simple visual journey
@@ -888,10 +1165,21 @@
 
             <div class="passport-features">
 
-                <span>⭐ Achievement badges</span>
-                <span>📈 Growth progress</span>
-                <span>🎯 Personal goals</span>
-                <span>🌱 Development areas</span>
+                <span>
+                    ⭐ Achievement badges
+                </span>
+
+                <span>
+                    📈 Growth progress
+                </span>
+
+                <span>
+                    🎯 Personal goals
+                </span>
+
+                <span>
+                    🌱 Development areas
+                </span>
 
             </div>
 
@@ -906,6 +1194,7 @@
                 <div class="avatar">
                     🧒
                 </div>
+
 
                 <div>
 
@@ -923,6 +1212,7 @@
 
                 </div>
 
+
                 <div class="passport-star">
                     ★
                 </div>
@@ -933,30 +1223,57 @@
 
             <div class="progress-block">
 
+
                 <div class="progress-label">
-                    <strong>Physical</strong>
-                    <span>82%</span>
+
+                    <strong>
+                        Physical
+                    </strong>
+
+                    <span>
+                        82%
+                    </span>
+
                 </div>
+
 
                 <div class="progress-track">
                     <span style="width:82%"></span>
                 </div>
 
 
+
                 <div class="progress-label">
-                    <strong>Thinking</strong>
-                    <span>72%</span>
+
+                    <strong>
+                        Thinking
+                    </strong>
+
+                    <span>
+                        72%
+                    </span>
+
                 </div>
+
 
                 <div class="progress-track">
                     <span style="width:72%"></span>
                 </div>
 
 
+
                 <div class="progress-label">
-                    <strong>Creativity</strong>
-                    <span>91%</span>
+
+                    <strong>
+                        Creativity
+                    </strong>
+
+                    <span>
+                        91%
+                    </span>
+
                 </div>
+
 
                 <div class="progress-track">
                     <span style="width:91%"></span>
@@ -965,11 +1282,20 @@
             </div>
 
 
+
             <div class="badge-row">
 
-                <span>🏃 Active Star</span>
-                <span>🧩 Puzzle Pro</span>
-                <span>🎨 Creator</span>
+                <span>
+                    🏃 Active Star
+                </span>
+
+                <span>
+                    🧩 Puzzle Pro
+                </span>
+
+                <span>
+                    🎨 Creator
+                </span>
 
             </div>
 
@@ -982,12 +1308,29 @@
 
 
 <!-- =========================================================
-     PARENT INSIGHTS
+     PARENTS
 ========================================================= -->
 
-<section class="section parents-section">
+<section
+    class="section parents-section"
+    id="parents"
+>
 
-    <div class="container">
+
+    <div
+        class="section-animation parents-animation"
+        aria-hidden="true"
+    >
+
+        <span class="parent-dot parent-dot-one"></span>
+        <span class="parent-dot parent-dot-two"></span>
+        <span class="parent-dot parent-dot-three"></span>
+
+    </div>
+
+
+
+    <div class="container section-content">
 
         <div class="section-heading centered reveal-left">
 
@@ -995,9 +1338,11 @@
                 For parents
             </span>
 
+
             <h2>
                 See more than screen time.
             </h2>
+
 
             <p>
                 Understand what your child is exploring,
@@ -1005,6 +1350,7 @@
             </p>
 
         </div>
+
 
 
         <div class="parent-dashboard">
@@ -1129,7 +1475,28 @@
 
 <section class="purpose-section">
 
-    <div class="container">
+    <div
+        class="section-animation purpose-animation"
+        aria-hidden="true"
+    >
+
+        <span class="purpose-spark spark-one">
+            ✦
+        </span>
+
+        <span class="purpose-spark spark-two">
+            ✧
+        </span>
+
+        <span class="purpose-spark spark-three">
+            ★
+        </span>
+
+    </div>
+
+
+
+    <div class="container section-content">
 
         <div class="purpose-card reveal-right">
 
@@ -1138,6 +1505,7 @@
                 <span class="eyebrow yellow">
                     The Kryda idea
                 </span>
+
 
                 <h2>
                     Technology that sends kids back into the real world.
@@ -1177,7 +1545,9 @@
 
 <footer class="site-footer">
 
+
     <div class="container footer-grid">
+
 
         <div class="footer-brand">
 
@@ -1186,15 +1556,14 @@
                 class="logo footer-logo"
             >
 
-                <span class="logo-icon">
-                    K
-                </span>
-
-                <span class="logo-text">
-                    kryda
-                </span>
+                <img
+                    src="kryda-logo.png"
+                    alt="Kryda"
+                    class="custom-logo footer-custom-logo"
+                >
 
             </a>
+
 
             <p>
                 Play today. Grow every day.
@@ -1203,39 +1572,73 @@
         </div>
 
 
+
         <div class="footer-column">
 
-            <h3>Explore</h3>
+            <h3>
+                Explore
+            </h3>
 
-            <a href="#activities">Activities</a>
-            <a href="#pillars">Growth</a>
-            <a href="#personalized">Personalized</a>
+            <a href="#activities">
+                Activities
+            </a>
+
+            <a href="#pillars">
+                Growth
+            </a>
+
+            <a href="#personalized">
+                Personalized
+            </a>
 
         </div>
 
 
+
         <div class="footer-column">
 
-            <h3>Family</h3>
+            <h3>
+                Family
+            </h3>
 
-            <a href="#passport">Growth Passport</a>
-            <a href="#">Parent Zone</a>
-            <a href="#">Help</a>
+            <a href="#passport">
+                Growth Passport
+            </a>
+
+            <a href="#">
+                Parent Zone
+            </a>
+
+            <a href="#">
+                Help
+            </a>
 
         </div>
 
 
+
         <div class="footer-column">
 
-            <h3>Kryda</h3>
+            <h3>
+                Kryda
+            </h3>
 
-            <a href="#">About</a>
-            <a href="#">Privacy</a>
-            <a href="#">Contact</a>
+            <a href="#">
+                About
+            </a>
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
 
         </div>
 
     </div>
+
 
 
     <div class="container footer-bottom">
@@ -1243,6 +1646,7 @@
         <p>
             © 2026 Kryda. Made for curious minds.
         </p>
+
 
         <button
             class="back-top"
@@ -1267,11 +1671,13 @@
     aria-hidden="true"
 >
 
+
     <div
         class="activity-modal"
         role="dialog"
         aria-modal="true"
     >
+
 
         <button
             class="modal-close"
@@ -1282,12 +1688,14 @@
         </button>
 
 
+
         <div
             class="modal-art"
             id="modalArt"
         >
-            🎮
+            ✨
         </div>
+
 
 
         <span
@@ -1298,14 +1706,17 @@
         </span>
 
 
+
         <h2 id="modalTitle">
             Activity
         </h2>
 
 
+
         <p id="modalDescription">
             Activity description.
         </p>
+
 
 
         <button
@@ -1314,6 +1725,7 @@
         >
             ▶ Start Activity
         </button>
+
 
 
         <p
@@ -1326,6 +1738,7 @@
     </div>
 
 </div>
+
 
 
 <script src="script.js"></script>
